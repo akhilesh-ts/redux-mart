@@ -3,17 +3,28 @@ import ProductDetailShimmer from "@/components/shimmer/ProductDetailsShimmer";
 import useFetchProductDetails from "@/hook/useFetchProductDetails";
 import React from "react";
 import { useParams } from "react-router";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const { productDetails, error, loading } = useFetchProductDetails(id);
 
   if (loading) {
-    return <ProductDetailShimmer/>;
+    return <ProductDetailShimmer />;
   }
   if (error) {
-    return <ErrorMessage error={error}/>;
+    return <ErrorMessage error={error} />;
   }
+
+  const driverObj = driver();
+  driverObj.highlight({
+    element: "#cart-buttin",
+    popover: {
+      title: "Cart Button",
+      description: "This feature is under development.",
+    },
+  });
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
@@ -70,7 +81,7 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="mb-4">
-              <button className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
+              <button id="cart-buttin" className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
                 Add to Cart
               </button>
             </div>
