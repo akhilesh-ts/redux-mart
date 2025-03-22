@@ -1,11 +1,11 @@
-import { createBrowserRouter } from "react-router";
+import {  createHashRouter } from "react-router";
 import AppLayout from "@/layout/AppLayout";
 import Home from "@/page/Home";
 import ProductPage from "@/page/ProductPage";
 import ProductDetails from "@/page/ProductDetails";
 import NotFoundPage from "@/components/notfound/NotFoundPage";
 
-const Approuter = createBrowserRouter([
+const Approuter = createHashRouter([
   {
     path: "/",
     element: <AppLayout />,
