@@ -1,37 +1,27 @@
-import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle } from "lucide-react";
-import { useSelector } from "react-redux";
-import ProductCard from "@/components/productCard/ProductCard";
-import useFetchProducts from "@/hook/useFetchProducts";
-import ProductListShimmer from "@/components/shimmer/ProductListShimmer";
+import { Link } from "react-router";
 import ErrorMessage from "@/components/error/ErrorMessage";
+import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 import FeatureCardShimmer from "@/components/shimmer/FeatureCardShimmer";
 import HeroShimmer from "@/components/shimmer/HeroSectionShimmer";
-
+import useFetchFeaturedProduct from "@/hook/useFetchFeaturedProduct";
 
 const Home = () => {
-  const { loading, error } = useFetchProducts();
-  const products = useSelector((state) => state.product.products);
+  const { loading, error } = useFetchFeaturedProduct();
 
   if (loading) {
     return (
       <>
-      <HeroShimmer/>
-       <FeatureCardShimmer/>
-       
+        <HeroShimmer />
+        <FeatureCardShimmer />
       </>
-     
-    )
-    
+    );
   }
   if (error) {
     return <ErrorMessage error={error} />;
   }
-
   return (
     <div className="w-full">
-      {/* Hero Section */}
       <div className="relative bg-gray-900 text-white py-20 px-10 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Discover the Best Products
@@ -46,31 +36,9 @@ const Home = () => {
         </Link>
       </div>
 
-      
-
-      {/* Featured Products */}
-      <div className="py-12 px-10 bg-gray-50">
-        <h2 className="text-3xl font-semibold text-center mb-6">Featured Products</h2>
-        {products.length > 0 ? (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-            {products.slice(0, 4).map((product) => (
-              <Link key={product.id} to={`/product/${product.id}`}>
-                <ProductCard product={product} />
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-10">
-            <AlertTriangle className="text-gray-500 w-12 h-12 mx-auto" />
-            <p className="text-gray-600 mt-4">No Products Available</p>
-          </div>
-        )}
-      </div>
-
-     
+      <FeaturedProducts />
     </div>
   );
 };
 
 export default Home;
-

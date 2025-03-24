@@ -5,6 +5,7 @@ import React from "react";
 import { useParams } from "react-router";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+import FeaturedProducts from "@/components/featuredProducts/FeaturedProducts";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -81,12 +82,18 @@ const ProductDetails = () => {
               </span>
             </div>
             <div className="mb-4">
-              <button id="cart-buttin" className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
+              <button
+                id="cart-buttin"
+                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold"
+              >
                 Add to Cart
               </button>
             </div>
           </div>
         </div>
+      </div>
+      <div className="mt-10">
+        <FeaturedProducts />
       </div>
     </div>
   );
