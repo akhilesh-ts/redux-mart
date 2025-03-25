@@ -27,7 +27,7 @@ const ProductPage = () => {
   );
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state?.pagination?.currentPage);
-  const {selectedCategory} = useSelector((state) => state?.categories)
+  const { selectedCategory } = useSelector((state) => state?.categories);
   const { maxPrice, rating, minPrice } = useSelector((state) => state?.filters);
   const indexOfFirstProduct = (currentPage - 1) * productsPerPage;
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -59,7 +59,8 @@ const ProductPage = () => {
                 onClick={() => dispatch(setMaxPrice(1000))}
               >
                 {" "}
-                Max price <IndianRupee />{maxPrice} <X />
+                Max price <IndianRupee />
+                {maxPrice} <X />
               </Button>
             )}
             {minPrice > 0 && (
@@ -67,7 +68,8 @@ const ProductPage = () => {
                 className="bg-blue-950 text-white cursor-pointer"
                 onClick={() => dispatch(setMinPrice(0))}
               >
-                Min price <IndianRupee />{minPrice} <X />
+                Min price <IndianRupee />
+                {minPrice} <X />
               </Button>
             )}
             {rating && (
@@ -76,21 +78,27 @@ const ProductPage = () => {
                 onClick={() => dispatch(setRating(null))}
               >
                 {" "}
-                <Star />{rating} <X />
+                <Star />
+                {rating} <X />
               </Button>
             )}
-             {
-              selectedCategory!=="all" && <Button className="bg-blue-950 text-white cursor-pointer" onClick={()=>dispatch(setSelectedCategory("all"))}> {selectedCategory} {" "}<X/></Button>
-            }
-            {minPrice || rating  ? (
+            {selectedCategory !== "all" && (
+              <Button
+                className="bg-blue-950 text-white cursor-pointer"
+                onClick={() => dispatch(setSelectedCategory("all"))}
+              >
+                {" "}
+                {selectedCategory} <X />
+              </Button>
+            )}
+            {minPrice || rating ? (
               <Button
                 className="bg-blue-950 text-white cursor-pointer"
                 onClick={() => handelFilter()}
               >
                 clear all
               </Button>
-            ) : null} 
-           
+            ) : null}
           </div>
         </div>
 
