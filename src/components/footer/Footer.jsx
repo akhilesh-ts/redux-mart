@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Left Section: Copyright and Author (Inline) */}
           <div className="text-center md:text-left">
             <p className="text-sm">
-              &copy; {new Date().getFullYear()} Your Company. All rights reserved. | Created by{' '}
+              &copy; {new Date().getFullYear()}  All rights reserved. | Created by{' '}
               <Link to="https://akhileshts.netlify.app/">
               <span className="font-semibold underline">Akhilesh Ts</span>
               </Link>
