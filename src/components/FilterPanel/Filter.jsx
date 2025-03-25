@@ -220,7 +220,9 @@ const Filter = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="w-full md:w-auto">Filter</Button>
+        <Button variant="outline" className="w-full md:w-auto">
+          Filter
+        </Button>
       </DialogTrigger>
       <DialogContent className="bg-white w-full max-w-[90%] sm:max-w-[425px]">
         <DialogHeader>

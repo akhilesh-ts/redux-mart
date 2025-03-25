@@ -8,9 +8,14 @@ import ProductListShimmer from "@/components/shimmer/ProductListShimmer";
 import { Button } from "@/components/ui/button";
 import useFetchProducts from "@/hook/useFetchProducts";
 import { setSelectedCategory } from "@/utils/slice/categoriesSlice";
-import { resetFilter } from "@/utils/slice/filterSlice";
+import {
+  resetFilter,
+  setMaxPrice,
+  setMinPrice,
+  setRating,
+} from "@/utils/slice/filterSlice";
 import { setSearchVal } from "@/utils/slice/productSlice";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
@@ -49,6 +54,42 @@ const ProductPage = () => {
         <div className="w-full md:flex items-center gap-10">
           <Catgories />
           <Filter />
+          <div className="flex items-center gap-3">
+            {minPrice > 0 && (
+              <Button
+                className="bg-blue-950 text-white cursor-pointer"
+                onClick={() => dispatch(setMaxPrice(1000))}
+              >
+                {" "}
+                Max price {maxPrice} <X />
+              </Button>
+            )}
+            {minPrice > 0 && (
+              <Button
+                className="bg-blue-950 text-white cursor-pointer"
+                onClick={() => dispatch(setMinPrice(0))}
+              >
+                Min price {minPrice} <X />
+              </Button>
+            )}
+            {rating && (
+              <Button
+                className="bg-blue-950 text-white cursor-pointer"
+                onClick={() => dispatch(setRating(null))}
+              >
+                {" "}
+                Rating {rating} <X />
+              </Button>
+            )}
+            {minPrice || rating ? (
+              <Button
+                className="bg-blue-950 text-white cursor-pointer"
+                onClick={() => dispatch(resetFilter())}
+              >
+                clear all
+              </Button>
+            ) : null}
+          </div>
         </div>
 
         <Search />
@@ -76,7 +117,6 @@ const ProductPage = () => {
               className="bg-blue-900 text-white mt-3 cursor-pointer"
               onClick={handelFilter}
             >
-              {" "}
               clear
             </Button>
           </div>
