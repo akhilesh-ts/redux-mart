@@ -48,11 +48,11 @@ const ProductPage = () => {
 
   return (
     <div>
-      <div className="w-full bg-gray-100 p-10 sticky top-0 md:flex items-center justify-between">
-        <div className="w-full md:flex items-center gap-10">
+      <div className="w-full bg-gray-100 p-10 md:sticky top-0 flex flex-col gap-3 md:flex-row  items-center justify-between">
+        <div className="w-full flex flex-col md:flex-row items-center gap-10">
           <Catgories />
           <Filter />
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-1 md:gap-3 ">
             {minPrice > 0 && (
               <Button
                 className="bg-blue-950 text-white cursor-pointer"
@@ -85,7 +85,7 @@ const ProductPage = () => {
             {minPrice || rating  ? (
               <Button
                 className="bg-blue-950 text-white cursor-pointer"
-                onClick={() => dispatch(resetFilter())}
+                onClick={() => handelFilter()}
               >
                 clear all
               </Button>
