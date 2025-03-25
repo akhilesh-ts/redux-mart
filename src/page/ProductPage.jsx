@@ -27,10 +27,8 @@ const ProductPage = () => {
   );
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state?.pagination?.currentPage);
+  const {selectedCategory} = useSelector((state) => state?.categories)
   const { maxPrice, rating, minPrice } = useSelector((state) => state?.filters);
-
-  console.log(maxPrice, rating, minPrice);
-
   const indexOfFirstProduct = (currentPage - 1) * productsPerPage;
   const indexOfLastProduct = currentPage * productsPerPage;
   const currentItems = products.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -81,14 +79,18 @@ const ProductPage = () => {
                 Rating {rating} <X />
               </Button>
             )}
-            {minPrice || rating ? (
+             {
+              selectedCategory!=="all" && <Button className="bg-blue-950 text-white cursor-pointer" onClick={()=>dispatch(setSelectedCategory("all"))}> {selectedCategory} {" "}<X/></Button>
+            }
+            {minPrice || rating  ? (
               <Button
                 className="bg-blue-950 text-white cursor-pointer"
                 onClick={() => dispatch(resetFilter())}
               >
                 clear all
               </Button>
-            ) : null}
+            ) : null} 
+           
           </div>
         </div>
 
