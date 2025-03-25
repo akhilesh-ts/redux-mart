@@ -15,7 +15,7 @@ import {
   setRating,
 } from "@/utils/slice/filterSlice";
 import { setSearchVal } from "@/utils/slice/productSlice";
-import { AlertTriangle, X } from "lucide-react";
+import { AlertTriangle, IndianRupee, Star, X } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
@@ -59,7 +59,7 @@ const ProductPage = () => {
                 onClick={() => dispatch(setMaxPrice(1000))}
               >
                 {" "}
-                Max price {maxPrice} <X />
+                Max price <IndianRupee />{maxPrice} <X />
               </Button>
             )}
             {minPrice > 0 && (
@@ -67,7 +67,7 @@ const ProductPage = () => {
                 className="bg-blue-950 text-white cursor-pointer"
                 onClick={() => dispatch(setMinPrice(0))}
               >
-                Min price {minPrice} <X />
+                Min price <IndianRupee />{minPrice} <X />
               </Button>
             )}
             {rating && (
@@ -76,7 +76,7 @@ const ProductPage = () => {
                 onClick={() => dispatch(setRating(null))}
               >
                 {" "}
-                Rating {rating} <X />
+                <Star />{rating} <X />
               </Button>
             )}
              {
