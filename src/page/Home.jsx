@@ -7,6 +7,7 @@ import HeroShimmer from "@/components/shimmer/HeroSectionShimmer";
 import useFetchFeaturedProduct from "@/hook/useFetchFeaturedProduct";
 
 const Home = () => {
+  
   const { loading, error } = useFetchFeaturedProduct();
 
   if (loading) {

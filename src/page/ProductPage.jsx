@@ -22,7 +22,9 @@ const ProductPage = () => {
   );
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state?.pagination?.currentPage);
-  // const searchVal = useSelector((state) => state?.product?.searchVal);
+  const { maxPrice, rating, minPrice } = useSelector((state) => state?.filters);
+
+  console.log(maxPrice, rating, minPrice);
 
   const indexOfFirstProduct = (currentPage - 1) * productsPerPage;
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -38,7 +40,7 @@ const ProductPage = () => {
   const handelFilter = () => {
     dispatch(resetFilter());
     dispatch(setSelectedCategory("all"));
-    dispatch(setSearchVal(""))
+    dispatch(setSearchVal(""));
   };
 
   return (
